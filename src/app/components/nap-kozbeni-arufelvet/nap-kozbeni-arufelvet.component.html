@@ -1,0 +1,35 @@
+<div class="product-entry-container">
+  <div class="form-container">
+    <h2>Napközbeni árufelvét</h2>
+
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Termék neve</mat-label>
+        <input matInput id="name" formControlName="name" type="text" placeholder="Add meg a termék nevét" />
+        <mat-error *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched">
+          Kötelező és legalább 3 karakter hosszú kell legyen.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Ár</mat-label>
+        <input matInput id="price" formControlName="price" type="number" placeholder="Add meg a termék árát" />
+        <mat-error *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched">
+          Az ár szám és legalább 0 kell legyen.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Kép URL</mat-label>
+        <input matInput id="image" formControlName="image" type="text" placeholder="Add meg a kép URL-jét" />
+        <mat-error *ngIf="productForm.get('image')?.invalid && productForm.get('image')?.touched">
+          Kötelező mező.
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="productForm.invalid">
+        Termék hozzáadása
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<mat-toolbar color="primary" class="navbar">
+  <span>Termékkezelő rendszer</span>
+  <span class="spacer"></span>
+
+  <div class="nav-links" *ngIf="!isMobile">
+    <button mat-button routerLink="/" *ngIf="isLoggedIn()">Kezdőlap</button>
+    <button mat-button routerLink="/nap-kozbeni-arufelvet" *ngIf="isLoggedIn()">Nap közbeni árufelvétel</button>
+    <button mat-button routerLink="/nap-vegi-leltar" *ngIf="isLoggedIn()">Nap végi leltár</button>
+    <button mat-button routerLink="/register" *ngIf="!isLoggedIn()">Regisztráció</button>
+    <button mat-button routerLink="/login" *ngIf="!isLoggedIn()">Bejelentkezés</button>
+    <button mat-button (click)="logout()" *ngIf="isLoggedIn()">Kijelentkezés</button>
+  </div>
+
+  <button mat-icon-button class="menu-button" (click)="toggleMenu()" *ngIf="isMobile">
+    <mat-icon>menu-white</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="mobile-menu" *ngIf="isMobile && menuOpen">
+  <button mat-button routerLink="/" (click)="toggleMenu()" *ngIf="isLoggedIn()">Kezdőlap</button>
+  <button mat-button routerLink="/nap-kozbeni-arufelvet" (click)="toggleMenu()" *ngIf="isLoggedIn()">Nap közbeni árufelvétel</button>
+  <button mat-button routerLink="/nap-vegi-leltar" (click)="toggleMenu()" *ngIf="isLoggedIn()">Nap végi leltár</button>
+  <button mat-button routerLink="/register" (click)="toggleMenu()" *ngIf="!isLoggedIn()">Regisztráció</button>
+  <button mat-button routerLink="/login" (click)="toggleMenu()" *ngIf="!isLoggedIn()">Bejelentkezés</button>
+  <button mat-button (click)="logout(); toggleMenu()" *ngIf="isLoggedIn()">Kijelentkezés</button>
+</div>

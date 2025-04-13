@@ -1,0 +1,47 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background: #222;
+  color: white;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.nav-links button {
+  margin: 0 10px;
+  color: white;
+}
+
+.menu-button {
+  display: none;
+}
+
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  background: #222;
+  padding: 10px;
+  position: absolute;
+  top: 56px;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.mobile-menu button {
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .menu-button {
+    display: block;
+  }
+}

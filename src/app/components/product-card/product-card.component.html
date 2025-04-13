@@ -1,0 +1,7 @@
+<mat-card class="product-card" (click)="handleClick()" [class.clicked]="isClicked" [appHighlight]="'#ddd'" [appDisableIfInCart]="isClicked">
+  <img mat-card-image [src]="product.image" [alt]="product.name">
+  <mat-card-content>
+    <h2>{{ product.name }}</h2>
+    <p>Price: {{ product.price | priceFormat:'Ft':'after' }}</p>
+  </mat-card-content>
+</mat-card>

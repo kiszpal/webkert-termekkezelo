@@ -1,0 +1,41 @@
+<div class="auth-container">
+  <div class="auth-form">
+    <h2>Regisztráció</h2>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Felhasználónév</mat-label>
+        <input matInput id="username" formControlName="username" placeholder="Add meg a felhasználóneved" />
+        <mat-error *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+          Kötelező és minimum 4 karakter hosszú kell legyen.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email cím</mat-label>
+        <input matInput id="email" formControlName="email" type="email" placeholder="Add meg az email címed" />
+        <mat-error *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+          Kötelező
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Jelszó</mat-label>
+        <input matInput id="password" formControlName="password" type="password" placeholder="Add meg a jelszavad" />
+        <mat-error *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+          A jelszó legalább 6 karakter hosszú kell legyen.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Jelszó megerősítése</mat-label>
+        <input matInput id="confirmPassword" formControlName="confirmPassword" type="password" placeholder="Erősítsd meg a jelszavad" />
+        <mat-error *ngIf="registerForm.get('confirmPassword')?.hasError('mismatch') && registerForm.get('confirmPassword')?.touched">
+          A jelszók nem egyeznek meg.
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Regisztráció</button>
+    </form>
+  </div>
+</div>

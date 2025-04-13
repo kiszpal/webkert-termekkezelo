@@ -1,0 +1,59 @@
+<div class="inventory-container">
+  <div class="inventory-box">
+    <h2>Napi végi leltár</h2>
+
+    <ng-container *ngIf="leltar$ | async as leltar">
+      <div class="summary">
+        <div class="stat">
+          <h3>Összes bevétel:</h3>
+          <p>${{ totalRevenue.toFixed(2) }}</p>
+        </div>
+
+        <div class="stat">
+          <h3>Összes eladott termék:</h3>
+          <p>{{ totalItemsSold }}</p>
+        </div>
+      </div>
+
+      <h3>Legnépszerűbb termékek</h3>
+      <table mat-table [dataSource]="topSellingProducts" class="mat-elevation-z8 mat-table">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Termék </th>
+          <td mat-cell *matCellDef="let product"> {{ product.name }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef> Darabszám </th>
+          <td mat-cell *matCellDef="let product"> {{ product.quantity }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="totalPrice">
+          <th mat-header-cell *matHeaderCellDef> Összes bevétel </th>
+          <td mat-cell *matCellDef="let product"> ${{ product.totalPrice.toFixed(2) }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsTop"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsTop;"></tr>
+      </table>
+
+      <h3>Megmaradt termékek</h3>
+      <table mat-table [dataSource]="leltar.mostPopularItems" class="mat-elevation-z8 mat-table
+">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Termék </th>
+          <td mat-cell *matCellDef="let product"> {{ product.name }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef> Ár </th>
+          <td mat-cell *matCellDef="let product"> {{ product.price }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsLeftover"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsLeftover;"></tr>
+      </table>
+    </ng-container>
+  </div>
+</div>

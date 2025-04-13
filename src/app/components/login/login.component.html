@@ -1,0 +1,25 @@
+<div class="auth-container">
+  <div class="auth-form">
+    <h2>Bejelentkezés</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Email cím</mat-label>
+        <input matInput id="email" formControlName="email" placeholder="Add meg az email címed" />
+        <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          Kötelező
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Jelszó</mat-label>
+        <input matInput id="password" formControlName="password" type="password" placeholder="Add meg a jelszavad" />
+        <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          Kötelező és legalább 6 karakter hosszú kell legyen.
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Bejelentkezés</button>
+    </form>
+  </div>
+</div>
